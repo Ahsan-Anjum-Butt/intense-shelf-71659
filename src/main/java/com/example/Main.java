@@ -37,6 +37,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.cloudinary.Cloudinary;
+import com.cloudinary.Transformation;
 import com.cloudinary.utils.ObjectUtils;
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
@@ -142,9 +143,11 @@ public class Main
 			// Map uploadResult = cloudinary.uploader().upload(
 			// "https://images.unsplash.com/photo-1432256851563-20155d0b7a39?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=7744813a62e994e17044d8ecb1516265&auto=format&fit=crop&w=1500&q=80",
 			// ObjectUtils.emptyMap());
-			//
-			cloudinary.uploader().rename("noovhls0mjo6bzlmayal", "scene", ObjectUtils.emptyMap());
-			model.put("records", "test upload to Cloudinary successful!");
+//			cloudinary.uploader().rename("noovhls0mjo6bzlmayal", "scene", ObjectUtils.emptyMap());
+//			model.put("records", "test upload to Cloudinary successful!");
+			Map uploadResult = cloudinary.uploader().upload("https://images.unsplash.com/photo-1500089386287-fa913ee39a49?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=ff97e262f8a3b65af1b744c157801729&auto=format&fit=crop&w=1506&q=80", ObjectUtils.asMap(
+					"public_id", "forest_cropped",
+					"transformation", new Transformation().crop("limit").width(100).height(100)));
 			return "db";
 		}
 		catch (Exception e)
