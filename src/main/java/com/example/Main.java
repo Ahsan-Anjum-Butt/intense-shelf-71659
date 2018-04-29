@@ -116,6 +116,7 @@ public class Main
 					+ "atCorner boolean NOT NULL,"
 					+ "picURL text"
 					+ ")");
+			model.put("records", "successfully created tables");
 			return "db";
 		} 
 		catch (Exception e)
