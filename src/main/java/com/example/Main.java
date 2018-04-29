@@ -117,7 +117,7 @@ public class Main
 					+ "picURL text"
 					+ ")");
 			stmt.executeUpdate(
-					"INSERT INTO users values ('Ahsan', 'male', '22-05-1996', 123456789, 'Amity Park, London', '090078601', 'CodeSage', 'tempest', 'admin', NULL)");
+					"INSERT INTO users (name, gender, dateOfBirth, CNIC, Address, contactNo, username, password, role, rating) values ('Ahsan', 'male', '22-05-1996', 123456789, 'Amity Park, London', '090078601', 'CodeSage', 'tempest', 'admin', NULL)");
 			model.put("records", "admin inserted successfully");
 			return "db";
 		} 
