@@ -116,7 +116,9 @@ public class Main
 					+ "atCorner boolean NOT NULL,"
 					+ "picURL text"
 					+ ")");
-			model.put("records", "successfully created tables");
+			stmt.executeUpdate(
+					"INSERT INTO users values ('Ahsan', 'male', '22-05-1996', 123456789, 'Amity Park, London', '090078601', 'CodeSage', 'tempest', 'admin', NULL)");
+			model.put("records", "admin inserted successfully");
 			return "db";
 		} 
 		catch (Exception e)
