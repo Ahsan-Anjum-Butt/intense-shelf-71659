@@ -178,7 +178,7 @@ public class Main
 		try 
 		{
 			model.put("records", "show this");
-			return "";
+			return null;
 		}
 		catch (Exception e)
 		{
