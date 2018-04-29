@@ -36,6 +36,9 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.cloudinary.Cloudinary;
+import com.cloudinary.Singleton;
+import com.cloudinary.utils.ObjectUtils;
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 
@@ -128,6 +131,30 @@ public class Main
 		}
 	}
 
+	@RequestMapping("/testUpload")
+	String testUpload(Map<String, Object> model) 
+	{
+		try 
+		{
+			// Cloudinary cloudinary = new Cloudinary(ObjectUtils.asMap(
+			// "cloud_name", "code-sage-cloud",
+			// "api_key", "623496281366913",
+			// "api_secret", "G6KiWcPb8twOAH2RMP-y9MCCB-A"));
+			Cloudinary cloudinary = Singleton.getCloudinary();
+			Map uploadResult = cloudinary.uploader().upload(
+					"https://images.unsplash.com/photo-1432256851563-20155d0b7a39?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=7744813a62e994e17044d8ecb1516265&auto=format&fit=crop&w=1500&q=80",
+					ObjectUtils.emptyMap());
+			model.put("records", "test upload to Cloudinary successful!");
+			return "db";
+		}
+		catch (Exception e)
+		{
+			model.put("message", e.getMessage());
+			return "error";
+		}
+	}
+
+	
 	@Bean
 	public DataSource dataSource() throws SQLException 
 	{
