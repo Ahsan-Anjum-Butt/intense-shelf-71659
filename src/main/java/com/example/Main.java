@@ -171,21 +171,6 @@ public class Main
 			return "error";
 		}
 	}
-
-	@RequestMapping("/registered")
-	String registrationCheck(Map<String, Object> model) 
-	{
-		try 
-		{
-			model.put("records", "show this");
-			return null;
-		}
-		catch (Exception e)
-		{
-			model.put("message", e.getMessage());
-			return "error";
-		}
-	}
 	
 	@Bean
 	public DataSource dataSource() throws SQLException 
