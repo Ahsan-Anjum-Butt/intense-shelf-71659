@@ -156,6 +156,21 @@ public class Main
 			return "error";
 		}
 	}
+	
+	@RequestMapping("/signup")
+	String signup(Map<String, Object> model) 
+	{
+		try 
+		{
+			model.put("records", "show this");
+			return "signup";
+		}
+		catch (Exception e)
+		{
+			model.put("message", e.getMessage());
+			return "error";
+		}
+	}
 
 	
 	@Bean
