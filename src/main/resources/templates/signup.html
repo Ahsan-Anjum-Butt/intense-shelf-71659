@@ -6,9 +6,17 @@
 
 <div class="container">
   <h1>Sign Up</h1>
-	<ul th:each="record : ${records}">
-		<li th:text="${record}"/>
-	</ul> 
+	<label for="name">Name:  </label>
+	<input type="text" name="name" id="male"><br><br>
+	<label for="gender">Gender:  </label>
+	<select>
+	<option value="male">Male</option>
+	<option value="female">Female</option>
+	<option value="other">Other</option>
+	</select><br><br>
+	<label for="other">Other</label>
+	<input type="radio" name="gender" id="other" value="other"><br><br>
+	<input type="submit" value="Submit" onclick="/registered">
 </div>
 
 </body>
