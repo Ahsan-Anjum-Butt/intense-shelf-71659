@@ -19,10 +19,8 @@ package com.example;
 import static javax.measure.unit.SI.KILOGRAM;
 
 import java.sql.Connection;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
 import java.util.Map;
 
 import javax.measure.quantity.Mass;
@@ -40,8 +38,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
-import org.postgresql.*;
-import com.cloudinary.*;
 
 @Controller
 @SpringBootApplication
@@ -52,7 +48,7 @@ public class Main
 	{
 	    RelativisticModel.select();
 	    String energy = System.getenv().get("ENERGY");
-	    if (energy == null) {
+		if (energy == null) {
 	       energy = "12 GeV";
 	    }
 	    Amount<Mass> m = Amount.valueOf(energy).to(KILOGRAM);
@@ -83,20 +79,46 @@ public class Main
 		try (Connection connection = dataSource.getConnection()) 
 		{
 			Statement stmt = connection.createStatement();
-			stmt.executeUpdate("CREATE TABLE IF NOT EXISTS ticks (tick timestamp)");
-			stmt.executeUpdate("INSERT INTO ticks VALUES (now())");
-			ResultSet rs = stmt.executeQuery("SELECT tick FROM ticks");
-
-			ArrayList<String> output = new ArrayList<String>();
-			while (rs.next()) 
-			{
-				output.add("Read from DB: " + rs.getTimestamp("tick"));
-			}
-
-			model.put("records", output);
+			// stmt.executeUpdate("CREATE TABLE IF NOT EXISTS ticks (tick timestamp)");
+			// stmt.executeUpdate("INSERT INTO ticks VALUES (now())");
+			// ResultSet rs = stmt.executeQuery("SELECT tick FROM ticks");
+			//
+			// ArrayList<String> output = new ArrayList<String>();
+			// while (rs.next())
+			// {
+			// output.add("Read from DB: " + rs.getTimestamp("tick"));
+			// }
+			//
+			// model.put("records", output);
+			stmt.executeUpdate("CREATE TABLE IF NOT EXISTS users (" 
+			+ "userID SERIAL PRIMARY KEY,"
+			+ "name text NOT NULL,"
+			+ "gender text NOT NULL,"
+			+ "dateOfBirth date NOT NULL,"
+			+ "CNIC INT NOT NULL,"
+			+ "Address text NOT NULL,"
+			+ "contactNo text NOT NULL,"
+			+ "username text NOT NULL UNIQUE,"
+			+ "password text NOT NULL,"
+			+ "role text NOT NULL,"
+			+ "rating REAL"
+			+ ")");
+			stmt.executeUpdate("CREATE TABLE IF NOT EXISTS comments (" 
+					+ "reviewID SERIAL PRIMARY KEY,"
+					+ "userID INT REFERENCES users(userID) NOT NULL,"
+					+ "review text NOT NULL"
+					+ ")");
+			stmt.executeUpdate("CREATE TABLE IF NOT EXISTS rooms (" 
+					+ "roomID SERIAL PRIMARY KEY,"
+					+ "price REAL NOT NULL,"
+					+ "availability boolean NOT NULL,"
+					+ "noOfBeds INT NOT NULL,"
+					+ "atCorner boolean NOT NULL,"
+					+ "picURL text"
+					+ ")");
 			return "db";
 		} 
-		catch (Exception e) 
+		catch (Exception e)
 		{
 			model.put("message", e.getMessage());
 			return "error";
