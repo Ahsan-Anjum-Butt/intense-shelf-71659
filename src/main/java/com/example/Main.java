@@ -35,6 +35,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.cloudinary.Cloudinary;
 import com.cloudinary.Transformation;
@@ -165,6 +166,34 @@ public class Main
 			model.put("records", "show this");
 			return "signup";
 		}
+		catch (Exception e)
+		{
+			model.put("message", e.getMessage());
+			return "error";
+		}
+	}
+
+	@RequestMapping(value="/register", method = RequestMethod.GET, produces="application/json")
+	String register(Map<String, Object> model)
+	{
+		try (Connection connection = dataSource.getConnection()) 
+		{
+			Statement stmt = connection.createStatement();
+			// stmt.executeUpdate("CREATE TABLE IF NOT EXISTS ticks (tick timestamp)");
+			// stmt.executeUpdate("INSERT INTO ticks VALUES (now())");
+			// ResultSet rs = stmt.executeQuery("SELECT tick FROM ticks");
+			//
+			// ArrayList<String> output = new ArrayList<String>();
+			// while (rs.next())
+			// {
+			// output.add("Read from DB: " + rs.getTimestamp("tick"));
+			// }
+			//
+			// model.put("records", output);
+			stmt.executeUpdate(
+					"INSERT INTO users (name, gender, dateOfBirth, CNIC, Address, contactNo, username, password, role, rating) values ('Jade', 'female', '1996-07-22', 123456789, 'Amity Park, London', '090078601', 'danny', 'tempest', 'user', NULL)");
+			return null;
+		} 
 		catch (Exception e)
 		{
 			model.put("message", e.getMessage());
