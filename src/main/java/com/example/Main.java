@@ -180,7 +180,7 @@ public class Main
 	}
 	
 	@PostMapping("/signup")
-	String signupSubmit(@ModelAttribute User user)
+	String signupSubmit(@ModelAttribute User user, Model model)
 	{
 		try 
 		{
