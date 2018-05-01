@@ -104,6 +104,7 @@ public class Main
 			+ "contactNo text NOT NULL,"
 			+ "username text NOT NULL UNIQUE,"
 			+ "password text NOT NULL,"
+			+ "dpURL text,"
 			+ "role text NOT NULL,"
 			+ "rating REAL"
 			+ ")");
