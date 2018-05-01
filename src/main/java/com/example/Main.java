@@ -180,16 +180,17 @@ public class Main
 	}
 	
 	@PostMapping("/signup")
-	String signupSubmit(@ModelAttribute User user, Model model)
+	String signupSubmit(@ModelAttribute User signUpForm)
 	{
 		try 
 		{
-			if (user.getName() == null || user.getName().isEmpty() || user.getGender() == null
-					|| user.getGender().isEmpty() || user.getDOB() == null
-					|| user.getCNIC() == null || user.getCNIC() == 0 || user.getAddress() == null
-					|| user.getAddress().isEmpty() || user.getContactNo() == null || user.getContactNo().isEmpty()
-					|| user.getUsername() == null || user.getUsername().isEmpty() || user.getPassword() == null
-					|| user.getPassword().isEmpty() || user.getDpURL() == null || user.getDpURL().isEmpty())
+			if (signUpForm.getName() == null || signUpForm.getName().isEmpty() || signUpForm.getGender() == null
+					|| signUpForm.getGender().isEmpty() || signUpForm.getDOB() == null || signUpForm.getCNIC() == null
+					|| signUpForm.getCNIC() == 0 || signUpForm.getAddress() == null || signUpForm.getAddress().isEmpty()
+					|| signUpForm.getContactNo() == null || signUpForm.getContactNo().isEmpty()
+					|| signUpForm.getUsername() == null || signUpForm.getUsername().isEmpty()
+					|| signUpForm.getPassword() == null || signUpForm.getPassword().isEmpty()
+					|| signUpForm.getDpURL() == null || signUpForm.getDpURL().isEmpty())
 				return "signup";
 			else
 			{
@@ -198,11 +199,12 @@ public class Main
 					Statement stmt = connection.createStatement();
 					stmt.executeUpdate(
 							"INSERT INTO users (name, gender, dateOfBirth, CNIC, Address, contactNo, username, password, role, rating) values ('"
-									+ user.getName() + "', '" + user.getGender() + "', '" + user.getDOB().toString()
+									+ signUpForm.getName() + "', '" + signUpForm.getGender() + "', '"
+									+ signUpForm.getDOB().toString()
 									+ "', "
-									+ user.getCNIC() + ", '" + user.getAddress()
-									+ "', '" + user.getContactNo() + "', '" + user.getUsername()
-									+ "', '" + user.getPassword() + "', 'user', NULL)");
+									+ signUpForm.getCNIC() + ", '" + signUpForm.getAddress() + "', '"
+									+ signUpForm.getContactNo() + "', '" + signUpForm.getUsername() + "', '"
+									+ signUpForm.getPassword() + "', 'user', NULL)");
 					return "registered";
 				}
 				catch (Exception e) 
