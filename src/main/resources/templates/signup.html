@@ -35,39 +35,39 @@
 	<label>Password:  </label>
 	<input type="password" id="password" th:field="*{password}"><br><br>
 	
-	<input type="submit" id="submit" value="Submit" onclick="onSubmit()">
+	<input type="submit" id="submit" value="Submit">
 	</form>
-	<script>
-	function onSubmit()
-	{
-		var name = document.getElementById("name");
-		var gender = document.getElementById("gender");
-		var DOB = document.getElementById("DOB");
-		var CNIC = document.getElementById("CNIC");
-		var address = document.getElementById("address");
-		var contactNo = document.getElementById("contactNo");
-		var username = document.getElementById("username");
-		var password = document.getElementById("password");
+<!-- 	<script> -->
+// 	function onSubmit()
+// 	{
+// 		var name = document.getElementById("name");
+// 		var gender = document.getElementById("gender");
+// 		var DOB = document.getElementById("DOB");
+// 		var CNIC = document.getElementById("CNIC");
+// 		var address = document.getElementById("address");
+// 		var contactNo = document.getElementById("contactNo");
+// 		var username = document.getElementById("username");
+// 		var password = document.getElementById("password");
 		
-		if(name.value == null || name.value == ""
-			|| gender.value == null || gender.value == ""
-			|| DOB.value == null || DOB.value == ""
-			|| CNIC.value == null || CNIC.value == ""
-			|| address.value == null || address.value == ""
-			|| contactNo.value == null || contactNo.value == ""
-			|| username.value == null || username.value == ""
-			|| password.value == null || password.value == "")
-		{
-			//  [1]
-	 		window.location.href = window.location.href;
-		}
-		else
-		{
-			window.location.href = "/register";
-		}
+// 		if(name.value == null || name.value == ""
+// 			|| gender.value == null || gender.value == ""
+// 			|| DOB.value == null || DOB.value == ""
+// 			|| CNIC.value == null || CNIC.value == ""
+// 			|| address.value == null || address.value == ""
+// 			|| contactNo.value == null || contactNo.value == ""
+// 			|| username.value == null || username.value == ""
+// 			|| password.value == null || password.value == "")
+// 		{
+// 			//  [1]
+// 	 		window.location.href = window.location.href;
+// 		}
+// 		else
+// 		{
+// 			window.location.href = "/register";
+// 		}
 		
-	}
-	</script>
+// 	}
+<!-- 	</script> -->
 </div>
 
 </body>
