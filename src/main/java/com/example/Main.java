@@ -94,36 +94,45 @@ public class Main
 			// }
 			//
 			// model.put("records", output);
-			stmt.executeUpdate("CREATE TABLE IF NOT EXISTS users (" 
-			+ "userID SERIAL PRIMARY KEY,"
-			+ "name text NOT NULL,"
-			+ "gender text NOT NULL,"
-			+ "dateOfBirth date NOT NULL,"
-			+ "CNIC INT NOT NULL,"
-			+ "Address text NOT NULL,"
-			+ "contactNo text NOT NULL,"
-			+ "username text NOT NULL UNIQUE,"
-			+ "password text NOT NULL,"
-			+ "dpURL text,"
-			+ "role text NOT NULL,"
-			+ "rating REAL"
-			+ ")");
-			stmt.executeUpdate("CREATE TABLE IF NOT EXISTS comments (" 
-					+ "reviewID SERIAL PRIMARY KEY,"
-					+ "userID INT REFERENCES users(userID) NOT NULL,"
-					+ "review text NOT NULL"
-					+ ")");
-			stmt.executeUpdate("CREATE TABLE IF NOT EXISTS rooms (" 
-					+ "roomID SERIAL PRIMARY KEY,"
-					+ "price REAL NOT NULL,"
-					+ "availability boolean NOT NULL,"
-					+ "noOfBeds INT NOT NULL,"
-					+ "atCorner boolean NOT NULL,"
-					+ "picURL text"
-					+ ")");
-			stmt.executeUpdate(
-					"INSERT INTO users (name, gender, dateOfBirth, CNIC, Address, contactNo, username, password, role, rating) values ('Ahsan', 'male', '1996-05-22', 123456789, 'Amity Park, London', '090078601', 'CodeSage', 'tempest', 'admin', NULL)");
-			model.put("records", "admin inserted successfully");
+
+			// stmt.executeUpdate("CREATE TABLE IF NOT EXISTS users ("
+			// + "userID SERIAL PRIMARY KEY,"
+			// + "name text NOT NULL,"
+			// + "gender text NOT NULL,"
+			// + "dateOfBirth date NOT NULL,"
+			// + "CNIC INT NOT NULL,"
+			// + "Address text NOT NULL,"
+			// + "contactNo text NOT NULL,"
+			// + "username text NOT NULL UNIQUE,"
+			// + "password text NOT NULL,"
+			// + "dpURL text,"
+			// + "role text NOT NULL,"
+			// + "rating REAL"
+			// + ")");
+			// stmt.executeUpdate("CREATE TABLE IF NOT EXISTS comments ("
+			// + "reviewID SERIAL PRIMARY KEY,"
+			// + "userID INT REFERENCES users(userID) NOT NULL,"
+			// + "review text NOT NULL"
+			// + ")");
+			// stmt.executeUpdate("CREATE TABLE IF NOT EXISTS rooms ("
+			// + "roomID SERIAL PRIMARY KEY,"
+			// + "price REAL NOT NULL,"
+			// + "availability boolean NOT NULL,"
+			// + "noOfBeds INT NOT NULL,"
+			// + "atCorner boolean NOT NULL,"
+			// + "picURL text"
+			// + ")");
+			// stmt.executeUpdate(
+			// "INSERT INTO users (name, gender, dateOfBirth, CNIC, Address, contactNo,
+			// username, password, role, rating) values ('Ahsan', 'male', '1996-05-22',
+			// 123456789, 'Amity Park, London', '090078601', 'CodeSage', 'tempest', 'admin',
+			// NULL)");
+			// model.put("records", "admin inserted successfully");
+
+			stmt.executeUpdate("DROP TABLE rooms");
+			stmt.executeUpdate("DROP TABLE comments");
+			stmt.executeUpdate("DROP TABLE users");
+			model.put("records", "tables deleted successfully");
 			return "db";
 		} 
 		catch (Exception e)
