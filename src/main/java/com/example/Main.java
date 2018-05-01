@@ -186,7 +186,7 @@ public class Main
 		{
 			if (user.getName() == null || user.getName().isEmpty() || user.getGender() == null
 					|| user.getGender().isEmpty() || user.getDOB() == null || user.getDOB().isEmpty()
-					|| user.getCNIC() == null || user.getCNIC().isEmpty() || user.getAddress() == null
+					|| user.getCNIC() == null || user.getCNIC() == 0 || user.getAddress() == null
 					|| user.getAddress().isEmpty() || user.getContactNo() == null || user.getContactNo().isEmpty()
 					|| user.getUsername() == null || user.getUsername().isEmpty() || user.getPassword() == null
 					|| user.getPassword().isEmpty() || user.getDpURL() == null || user.getDpURL().isEmpty())

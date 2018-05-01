@@ -5,7 +5,7 @@ public class User {
 	String name;
 	String gender;
 	String DOB;
-	String CNIC;
+	Integer CNIC;
 	String address;
 	String contactNo;
 	String username;
@@ -20,7 +20,7 @@ public class User {
 		idSet = false;
 	}
 
-	public User(String name, String gender, String dOB, String cNIC, String address, String contactNo, String username,
+	public User(String name, String gender, String dOB, Integer cNIC, String address, String contactNo, String username,
 			String password,
 			String dpURL, String role, String rating) {
 		super();
@@ -38,7 +38,7 @@ public class User {
 		this.rating = rating;
 	}
 
-	public User(String userID, String name, String gender, String dOB, String cNIC, String address, String contactNo,
+	public User(String userID, String name, String gender, String dOB, Integer cNIC, String address, String contactNo,
 			String username,
 			String password, String dpURL, String role, String rating) {
 		super();
@@ -105,11 +105,11 @@ public class User {
 		DOB = dOB;
 	}
 
-	public String getCNIC() {
+	public Integer getCNIC() {
 		return CNIC;
 	}
 
-	public void setCNIC(String cNIC) {
+	public void setCNIC(Integer cNIC) {
 		CNIC = cNIC;
 	}
 
