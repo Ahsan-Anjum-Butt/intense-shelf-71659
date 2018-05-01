@@ -185,7 +185,7 @@ public class Main
 		try 
 		{
 			if (user.getName() == null || user.getName().isEmpty() || user.getGender() == null
-					|| user.getGender().isEmpty() || user.getDOB() == null || user.getDOB().isEmpty()
+					|| user.getGender().isEmpty() || user.getDOB() == null
 					|| user.getCNIC() == null || user.getCNIC() == 0 || user.getAddress() == null
 					|| user.getAddress().isEmpty() || user.getContactNo() == null || user.getContactNo().isEmpty()
 					|| user.getUsername() == null || user.getUsername().isEmpty() || user.getPassword() == null
@@ -198,7 +198,8 @@ public class Main
 					Statement stmt = connection.createStatement();
 					stmt.executeUpdate(
 							"INSERT INTO users (name, gender, dateOfBirth, CNIC, Address, contactNo, username, password, role, rating) values ('"
-									+ user.getName() + "', '" + user.getGender() + "', '" + user.getDOB() + "', "
+									+ user.getName() + "', '" + user.getGender() + "', '" + user.getDOB().toString()
+									+ "', "
 									+ user.getCNIC() + ", '" + user.getAddress()
 									+ "', '" + user.getContactNo() + "', '" + user.getUsername()
 									+ "', '" + user.getPassword() + "', 'user', NULL)");
