@@ -34,6 +34,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -160,22 +164,60 @@ public class Main
 		}
 	}
 	
-	@RequestMapping("/signup")
-	String signup(Map<String, Object> model) 
+	@GetMapping("/signup")
+	String signupForm(Model model)
 	{
 		try 
 		{
-			model.put("records", "show this");
+			model.addAttribute("signUpForm", new User());
 			return "signup";
 		}
 		catch (Exception e)
 		{
-			model.put("message", e.getMessage());
+			model.addAttribute("message", e.getMessage());
+			return "error";
+		}
+	}
+	
+	@PostMapping("/signup")
+	String signupSubmit(@ModelAttribute User user)
+	{
+		try 
+		{
+			if (user.getName() == null || user.getName().isEmpty() || user.getGender() == null
+					|| user.getGender().isEmpty() || user.getDOB() == null || user.getDOB().isEmpty()
+					|| user.getCNIC() == null || user.getCNIC().isEmpty() || user.getAddress() == null
+					|| user.getAddress().isEmpty() || user.getContactNo() == null || user.getContactNo().isEmpty()
+					|| user.getUsername() == null || user.getUsername().isEmpty() || user.getPassword() == null
+					|| user.getPassword().isEmpty() || user.getDpURL() == null || user.getDpURL().isEmpty())
+				return "signup";
+			else
+			{
+				try (Connection connection = dataSource.getConnection())
+				{
+					Statement stmt = connection.createStatement();
+					stmt.executeUpdate(
+							"INSERT INTO users (name, gender, dateOfBirth, CNIC, Address, contactNo, username, password, role, rating) values ('"
+									+ user.getName() + "', '" + user.getGender() + "', '" + user.getDOB() + "', "
+									+ user.getCNIC() + ", '" + user.getAddress()
+									+ "', '" + user.getContactNo() + "', '" + user.getUsername()
+									+ "', '" + user.getPassword() + "', 'user', NULL)");
+					return "registered";
+				}
+				catch (Exception e) 
+				{
+					return "signup";
+				}
+			}
+		}
+		catch (Exception e)
+		{
 			return "error";
 		}
 	}
 
-	@RequestMapping(value="/register", method = RequestMethod.GET, produces="application/json")
+
+	@RequestMapping(value = "/register", method = RequestMethod.GET, produces = "application/json")
 	String register(Map<String, Object> model)
 	{
 		try (Connection connection = dataSource.getConnection()) 

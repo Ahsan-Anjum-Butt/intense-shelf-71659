@@ -6,36 +6,37 @@
 
 <div class="container">
   <h1>Sign Up</h1>
-  
+  <form action="#" th:action="@{/signup}" th:object="${signupForm}" method="post">
 	<label>Name:  </label>
-	<input type="text" id="name"><br><br>
+	<input type="text" id="name" th:field="*{name}"><br><br>
 	
 	<label>Gender:  </label>
-	<select id="gender">
+	<select id="gender" th:field="*{gender}">
 	<option value="male">Male</option>
 	<option value="female">Female</option>
 	<option value="other">Other</option>
 	</select><br><br>
 	
 	<label>DOB:  </label>
-	<input type="date" id="DOB"><br><br>
+	<input type="date" id="DOB" th:field="*{DOB}"><br><br>
 	
 	<label>CNIC:  </label>
-	<input type="number" id="CNIC"><br><br>
+	<input type="number" id="CNIC" th:field="*{CNIC}"><br><br>
 	
 	<label>Address:  </label>
-	<input type="text" id="address"><br><br>
+	<input type="text" id="address" th:field="*{address}"><br><br>
 	
 	<label>Contact No:  </label>
-	<input type="text" id="contactNo"><br><br>
+	<input type="text" id="contactNo" th:field="*{contactNo}"><br><br>
 	
 	<label>Username:  </label>
-	<input type="text" id="username"><br><br>
+	<input type="text" id="username" th:field="*{username}"><br><br>
 	
 	<label>Password:  </label>
-	<input type="password" id="password"><br><br>
+	<input type="password" id="password" th:field="*{password}"><br><br>
 	
-	<input type="submit" id="Submit" value="Submit" onclick="onSubmit()">
+	<input type="submit" id="submit" value="Submit" onclick="onSubmit()">
+	</form>
 	<script>
 	function onSubmit()
 	{
