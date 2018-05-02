@@ -18,14 +18,12 @@ package com.example;
 
 import static javax.measure.unit.SI.KILOGRAM;
 
-import java.awt.image.BufferedImage;
 import java.io.File;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Map;
 
-import javax.imageio.ImageIO;
 import javax.measure.quantity.Mass;
 import javax.sql.DataSource;
 import javax.validation.Valid;
@@ -200,9 +198,7 @@ public class Main
 					Cloudinary cloudinary = new Cloudinary(ObjectUtils.asMap("cloud_name", "code-sage-cloud", "api_key",
 							"623496281366913", "api_secret", "G6KiWcPb8twOAH2RMP-y9MCCB-A"));
 
-					BufferedImage img = signUpForm.getDp();
 					File out = new File("temp.jpg");
-					ImageIO.write(img, "jpg", out);
 					Map uploadResult = cloudinary.uploader().upload(
 							out,
 							ObjectUtils.asMap("public_id", signUpForm.getUsername() + "-dp", "transformation",
@@ -220,7 +216,7 @@ public class Main
 									+ signUpForm.getPassword() + "', '" + uploadResult.get("url") + "', 'user', NULL)");
 					return "registered";
 				}
-				catch (Exception e) 
+				catch (Exception e)
 				{
 					model.addAttribute("message", e.getMessage());
 					return "error";

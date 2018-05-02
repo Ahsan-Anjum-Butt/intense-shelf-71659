@@ -7,12 +7,13 @@
 <div class="container">
   <h1>Sign Up</h1>
 	<form action="#" th:action="@{/signup}" th:object="${user}" method="post">
-		<img height="200px" id="dp" width="200px" type="image/*" th:field="*{dp}">
+		<img height="200px" id="dp" width="200px" th:field="*{dp}">
 		<br><br>
 		<input type="file" id="imgFile" accept="image/*" onchange="onFile(event)">
 		<script>
 		function onFile(event)
 		{
+			//  [1]
 			var dp = document.getElementById('dp');
 			var reader = new FileReader();
 			reader.readAsDataURL(event.srcElement.files[0]);
@@ -22,8 +23,11 @@
 				var fileContent = reader.result;
 				dp.src = fileContent;
 				console.log(fileContent);
+				saveAs(fileContent, 'temp.jpg');
 			}
 		}
+		
+		//  [1]  https://www.quora.com/How-can-I-get-Absolute-path-of-a-file-using-javascript
 		</script>
 		<br><br>
 		<label>Name:  </label>
