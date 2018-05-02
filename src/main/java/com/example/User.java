@@ -11,9 +11,9 @@ public class User {
 	String gender;
 	@NotNull
 	String DOB;
-	@NotNull
+
 	@Min(100000)
-	Integer CNIC;
+	int CNIC;
 	@NotNull
 	String address;
 	@NotNull
@@ -32,7 +32,7 @@ public class User {
 		idSet = false;
 	}
 
-	public User(String name, String gender, String dOB, Integer cNIC, String address, String contactNo, String username,
+	public User(String name, String gender, String dOB, int cNIC, String address, String contactNo, String username,
 			String password,
 			String dpURL, String role, String rating) {
 		super();
@@ -50,7 +50,7 @@ public class User {
 		this.rating = rating;
 	}
 
-	public User(String userID, String name, String gender, String dOB, Integer cNIC, String address, String contactNo,
+	public User(String userID, String name, String gender, String dOB, int cNIC, String address, String contactNo,
 			String username,
 			String password, String dpURL, String role, String rating) {
 		super();
@@ -117,11 +117,11 @@ public class User {
 		DOB = dOB;
 	}
 
-	public Integer getCNIC() {
+	public int getCNIC() {
 		return CNIC;
 	}
 
-	public void setCNIC(Integer cNIC) {
+	public void setCNIC(int cNIC) {
 		CNIC = cNIC;
 	}
 
