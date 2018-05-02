@@ -182,7 +182,7 @@ public class Main
 	}
 	
 	@PostMapping("/signup")
-	String signupSubmit(@ModelAttribute @Valid User signUpForm, BindingResult bindingResult)
+	String signupSubmit(@ModelAttribute @Valid User signUpForm, BindingResult bindingResult, Model model)
 	{
 		try 
 		{
@@ -205,12 +205,14 @@ public class Main
 				}
 				catch (Exception e) 
 				{
-					return "signup";
+					model.addAttribute("message", e.getMessage());
+					return "error";
 				}
 			}
 		}
 		catch (Exception e)
 		{
+			model.addAttribute("message", e.getMessage());
 			return "error";
 		}
 	}
