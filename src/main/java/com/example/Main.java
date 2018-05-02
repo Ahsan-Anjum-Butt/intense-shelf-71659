@@ -186,9 +186,9 @@ public class Main
 	{
 		try 
 		{
-			if (bindingResult.hasErrors())
-				return "signup";
-			else
+			// if (bindingResult.hasErrors())
+			// return "signup";
+			// else
 			{
 				try (Connection connection = dataSource.getConnection())
 				{
