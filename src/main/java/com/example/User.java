@@ -2,15 +2,27 @@ package com.example;
 
 import java.sql.Date;
 
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+
 public class User {
 	String userID;
+	@NotNull
 	String name;
+	@NotNull
 	String gender;
+	@NotNull
 	Date DOB;
+	@NotNull
+	@Min(100000)
 	Integer CNIC;
+	@NotNull
 	String address;
+	@NotNull
 	String contactNo;
+	@NotNull
 	String username;
+	@NotNull
 	String password;
 	String dpURL;
 	String role;

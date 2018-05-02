@@ -36,6 +36,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -181,17 +182,12 @@ public class Main
 	}
 	
 	@PostMapping("/signup")
-	String signupSubmit(@ModelAttribute @Valid User signUpForm)
+	String signupSubmit(@ModelAttribute @Valid User signUpForm, BindingResult bindingResult)
 	{
 		try 
 		{
-			if (signUpForm.getName() == null || signUpForm.getName().isEmpty() || signUpForm.getGender() == null
-					|| signUpForm.getGender().isEmpty() || signUpForm.getDOB() == null || signUpForm.getCNIC() == null
-					|| signUpForm.getCNIC() == 0 || signUpForm.getAddress() == null || signUpForm.getAddress().isEmpty()
-					|| signUpForm.getContactNo() == null || signUpForm.getContactNo().isEmpty()
-					|| signUpForm.getUsername() == null || signUpForm.getUsername().isEmpty()
-					|| signUpForm.getPassword() == null || signUpForm.getPassword().isEmpty())
-				return "registered";
+			if (bindingResult.hasErrors())
+				return "signup";
 			else
 			{
 				try (Connection connection = dataSource.getConnection())
