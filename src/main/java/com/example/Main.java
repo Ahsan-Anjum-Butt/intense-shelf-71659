@@ -189,8 +189,7 @@ public class Main
 					|| signUpForm.getCNIC() == 0 || signUpForm.getAddress() == null || signUpForm.getAddress().isEmpty()
 					|| signUpForm.getContactNo() == null || signUpForm.getContactNo().isEmpty()
 					|| signUpForm.getUsername() == null || signUpForm.getUsername().isEmpty()
-					|| signUpForm.getPassword() == null || signUpForm.getPassword().isEmpty()
-					|| signUpForm.getDpURL() == null || signUpForm.getDpURL().isEmpty())
+					|| signUpForm.getPassword() == null || signUpForm.getPassword().isEmpty())
 				return "signup";
 			else
 			{
