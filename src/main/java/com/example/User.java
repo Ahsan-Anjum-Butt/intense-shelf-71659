@@ -1,6 +1,5 @@
 package com.example;
 
-import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
 public class User {
@@ -12,8 +11,8 @@ public class User {
 	@NotNull
 	String DOB;
 
-	@Min(1000000)
-	long CNIC;
+	@NotNull
+	String CNIC;
 	@NotNull
 	String address;
 	@NotNull
@@ -32,7 +31,7 @@ public class User {
 		idSet = false;
 	}
 
-	public User(String name, String gender, String dOB, long cNIC, String address, String contactNo, String username,
+	public User(String name, String gender, String dOB, String cNIC, String address, String contactNo, String username,
 			String password,
 			String dpURL, String role, String rating) {
 		super();
@@ -50,7 +49,7 @@ public class User {
 		this.rating = rating;
 	}
 
-	public User(String userID, String name, String gender, String dOB, long cNIC, String address, String contactNo,
+	public User(String userID, String name, String gender, String dOB, String cNIC, String address, String contactNo,
 			String username,
 			String password, String dpURL, String role, String rating) {
 		super();
@@ -117,11 +116,11 @@ public class User {
 		DOB = dOB;
 	}
 
-	public long getCNIC() {
+	public String getCNIC() {
 		return CNIC;
 	}
 
-	public void setCNIC(long cNIC) {
+	public void setCNIC(String cNIC) {
 		CNIC = cNIC;
 	}
 
