@@ -169,7 +169,7 @@ public class Main
 	{
 		try 
 		{
-			model.addAttribute("signUpForm", new User());
+			model.addAttribute("user", new User());
 			return "signup";
 		}
 		catch (Exception e)
