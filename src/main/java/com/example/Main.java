@@ -194,7 +194,7 @@ public class Main
 				{
 					Statement stmt = connection.createStatement();
 					stmt.executeUpdate(
-							"INSERT INTO users (name, gender, dateOfBirth, CNIC, Address, contactNo, username, password, role, rating) values ('"
+							"INSERT INTO users (name, gender, dateOfBirth, CNIC, Address, contactNo, username, password, dpURL, role, rating) values ('"
 									+ signUpForm.getName() + "', '" + signUpForm.getGender() + "', '"
 									+ signUpForm.getDOB().toString()
 									+ "', "
