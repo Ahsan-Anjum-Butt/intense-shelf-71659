@@ -36,7 +36,7 @@ public class User {
 
 	public User(String name, String gender, String dOB, String cNIC, String address, String contactNo, String username,
 			String password,
-			String dpURL, String role, String rating) {
+			String dpURL, BufferedImage dp, String role, String rating) {
 		super();
 		noneSet = idSet = false;
 		this.name = name;
@@ -48,13 +48,14 @@ public class User {
 		this.username = username;
 		this.password = password;
 		this.dpURL = dpURL;
+		this.dp = dp;
 		this.role = role;
 		this.rating = rating;
 	}
 
 	public User(String userID, String name, String gender, String dOB, String cNIC, String address, String contactNo,
 			String username,
-			String password, String dpURL, String role, String rating) {
+			String password, String dpURL, BufferedImage dp, String role, String rating) {
 		super();
 		noneSet = idSet = true;
 		this.userID = userID;
@@ -67,6 +68,7 @@ public class User {
 		this.username = username;
 		this.password = password;
 		this.dpURL = dpURL;
+		this.dp = dp;
 		this.role = role;
 		this.rating = rating;
 	}
