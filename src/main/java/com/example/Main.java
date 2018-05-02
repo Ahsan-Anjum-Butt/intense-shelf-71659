@@ -25,6 +25,7 @@ import java.util.Map;
 
 import javax.measure.quantity.Mass;
 import javax.sql.DataSource;
+import javax.validation.Valid;
 
 import org.jscience.physics.amount.Amount;
 import org.jscience.physics.model.RelativisticModel;
@@ -180,7 +181,7 @@ public class Main
 	}
 	
 	@PostMapping("/signup")
-	String signupSubmit(@ModelAttribute User signUpForm)
+	String signupSubmit(@ModelAttribute @Valid User signUpForm)
 	{
 		try 
 		{
@@ -190,7 +191,7 @@ public class Main
 					|| signUpForm.getContactNo() == null || signUpForm.getContactNo().isEmpty()
 					|| signUpForm.getUsername() == null || signUpForm.getUsername().isEmpty()
 					|| signUpForm.getPassword() == null || signUpForm.getPassword().isEmpty())
-				return "signup";
+				return "registered";
 			else
 			{
 				try (Connection connection = dataSource.getConnection())
