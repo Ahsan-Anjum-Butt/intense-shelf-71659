@@ -1,7 +1,5 @@
 package com.example;
 
-import java.sql.Date;
-
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
@@ -12,7 +10,7 @@ public class User {
 	@NotNull
 	String gender;
 	@NotNull
-	Date DOB;
+	String DOB;
 	@NotNull
 	@Min(100000)
 	Integer CNIC;
@@ -34,7 +32,7 @@ public class User {
 		idSet = false;
 	}
 
-	public User(String name, String gender, Date dOB, Integer cNIC, String address, String contactNo, String username,
+	public User(String name, String gender, String dOB, Integer cNIC, String address, String contactNo, String username,
 			String password,
 			String dpURL, String role, String rating) {
 		super();
@@ -52,7 +50,7 @@ public class User {
 		this.rating = rating;
 	}
 
-	public User(String userID, String name, String gender, Date dOB, Integer cNIC, String address, String contactNo,
+	public User(String userID, String name, String gender, String dOB, Integer cNIC, String address, String contactNo,
 			String username,
 			String password, String dpURL, String role, String rating) {
 		super();
@@ -111,11 +109,11 @@ public class User {
 		this.gender = gender;
 	}
 
-	public Date getDOB() {
+	public String getDOB() {
 		return DOB;
 	}
 
-	public void setDOB(Date dOB) {
+	public void setDOB(String dOB) {
 		DOB = dOB;
 	}
 
