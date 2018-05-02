@@ -208,7 +208,8 @@ public class Main
 				}
 				catch (Exception e) 
 				{
-					return "signup";
+					model.addAttribute("message", e.getMessage());
+					return "error";
 				}
 			}
 		}
