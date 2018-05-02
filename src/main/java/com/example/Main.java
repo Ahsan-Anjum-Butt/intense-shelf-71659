@@ -200,7 +200,7 @@ public class Main
 									+ "', "
 									+ signUpForm.getCNIC() + ", '" + signUpForm.getAddress() + "', '"
 									+ signUpForm.getContactNo() + "', '" + signUpForm.getUsername() + "', '"
-									+ signUpForm.getPassword() + "', 'user', NULL)");
+									+ signUpForm.getPassword() + "', '', 'user', NULL)");
 					return "registered";
 				}
 				catch (Exception e) 
