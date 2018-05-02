@@ -187,7 +187,10 @@ public class Main
 		try 
 		{
 			if (bindingResult.hasErrors())
-				return "signup";
+			{
+				model.addAttribute("message", bindingResult.getAllErrors());
+				return "error";
+			}
 			else
 			{
 				try (Connection connection = dataSource.getConnection())
@@ -205,8 +208,7 @@ public class Main
 				}
 				catch (Exception e) 
 				{
-					model.addAttribute("message", e.getMessage());
-					return "error";
+					return "signup";
 				}
 			}
 		}
