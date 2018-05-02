@@ -1,5 +1,7 @@
 package com.example;
 
+import java.awt.image.BufferedImage;
+
 import javax.validation.constraints.NotNull;
 
 public class User {
@@ -22,6 +24,7 @@ public class User {
 	@NotNull
 	String password;
 	String dpURL;
+	BufferedImage dp;
 	String role;
 	String rating;
 	boolean idSet, noneSet;
@@ -162,6 +165,14 @@ public class User {
 
 	public void setDpURL(String dpURL) {
 		this.dpURL = dpURL;
+	}
+
+	public BufferedImage getDp() {
+		return dp;
+	}
+
+	public void setDp(BufferedImage dp) {
+		this.dp = dp;
 	}
 
 	public String getRole() {

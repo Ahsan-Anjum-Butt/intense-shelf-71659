@@ -18,11 +18,14 @@ package com.example;
 
 import static javax.measure.unit.SI.KILOGRAM;
 
+import java.awt.image.BufferedImage;
+import java.io.File;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Map;
 
+import javax.imageio.ImageIO;
 import javax.measure.quantity.Mass;
 import javax.sql.DataSource;
 import javax.validation.Valid;
@@ -41,7 +44,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.cloudinary.Cloudinary;
 import com.cloudinary.Transformation;
@@ -195,6 +197,18 @@ public class Main
 			{
 				try (Connection connection = dataSource.getConnection())
 				{
+					Cloudinary cloudinary = new Cloudinary(ObjectUtils.asMap("cloud_name", "code-sage-cloud", "api_key",
+							"623496281366913", "api_secret", "G6KiWcPb8twOAH2RMP-y9MCCB-A"));
+
+					BufferedImage img = signUpForm.getDp();
+					File out = new File("temp.jpg");
+					ImageIO.write(img, "jpg", out);
+					Map uploadResult = cloudinary.uploader().upload(
+							out,
+							ObjectUtils.asMap("public_id", signUpForm.getUsername() + "-dp", "transformation",
+									new Transformation().crop("limit").width(200).height(200)));
+
+
 					Statement stmt = connection.createStatement();
 					stmt.executeUpdate(
 							"INSERT INTO users (name, gender, dateOfBirth, CNIC, Address, contactNo, username, password, dpURL, role, rating) values ('"
@@ -203,7 +217,7 @@ public class Main
 									+ "', "
 									+ signUpForm.getCNIC() + ", '" + signUpForm.getAddress() + "', '"
 									+ signUpForm.getContactNo() + "', '" + signUpForm.getUsername() + "', '"
-									+ signUpForm.getPassword() + "', '', 'user', NULL)");
+									+ signUpForm.getPassword() + "', '" + uploadResult.get("url") + "', 'user', NULL)");
 					return "registered";
 				}
 				catch (Exception e) 
@@ -216,35 +230,6 @@ public class Main
 		catch (Exception e)
 		{
 			model.addAttribute("message", e.getMessage());
-			return "error";
-		}
-	}
-
-
-	@RequestMapping(value = "/register", method = RequestMethod.GET, produces = "application/json")
-	String register(Map<String, Object> model)
-	{
-		try (Connection connection = dataSource.getConnection()) 
-		{
-			Statement stmt = connection.createStatement();
-			// stmt.executeUpdate("CREATE TABLE IF NOT EXISTS ticks (tick timestamp)");
-			// stmt.executeUpdate("INSERT INTO ticks VALUES (now())");
-			// ResultSet rs = stmt.executeQuery("SELECT tick FROM ticks");
-			//
-			// ArrayList<String> output = new ArrayList<String>();
-			// while (rs.next())
-			// {
-			// output.add("Read from DB: " + rs.getTimestamp("tick"));
-			// }
-			//
-			// model.put("records", output);
-			stmt.executeUpdate(
-					"INSERT INTO users (name, gender, dateOfBirth, CNIC, Address, contactNo, username, password, role, rating) values ('Jade', 'female', '1996-07-22', 123456789, 'Amity Park, London', '090078601', 'danny', 'tempest', 'user', NULL)");
-			return null;
-		}
-		catch (Exception e)
-		{
-			model.put("message", e.getMessage());
 			return "error";
 		}
 	}
